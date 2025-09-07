@@ -1,49 +1,60 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel
-from PyQt6.QtGui import QFont
-from PyQt6.QtCore import Qt
-import sys
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool Button GUI</title>
+<style>
+  body {
+    background-color: #1e1e2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
 
-class MyWindow(QWidget):
-    def __init__(self):
-        super().__init__()
+  .container {
+    text-align: center;
+    background-color: #2c2c3f;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #ff6f61;
+  }
 
-        self.setWindowTitle("🎨 Cool Button GUI")
-        self.setGeometry(500, 200, 400, 300)  # ขนาดและตำแหน่งหน้าต่าง
-        self.setStyleSheet("background-color: #1e1e2f; color: white; border-radius: 10px;")
+  button {
+    background-color: #ff6f61;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-        layout = QVBoxLayout()
+  button:hover {
+    background-color: #ff856e;
+  }
 
-        # Label
-        self.label = QLabel("Press the button below!")
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.label.setFont(QFont("Arial", 16))
-        layout.addWidget(self.label)
+  #message {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎨 Cool Button GUI</h2>
+    <button onclick="pressButton()">Click Me!</button>
+    <div id="message"></div>
+  </div>
 
-        # Button
-        self.button = QPushButton("Click Me!")
-        self.button.setFont(QFont("Arial", 14))
-        self.button.setStyleSheet("""
-            QPushButton {
-                background-color: #ff6f61;
-                color: white;
-                border-radius: 15px;
-                padding: 10px 20px;
-            }
-            QPushButton:hover {
-                background-color: #ff856e;
-            }
-        """)
-        self.button.clicked.connect(self.on_click)
-        layout.addWidget(self.button, alignment=Qt.AlignmentFlag.AlignCenter)
-
-        self.setLayout(layout)
-
-    def on_click(self):
-        self.label.setText("🎉 Button Pressed!")
-
-# Run app
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MyWindow()
-    window.show()
-    sys.exit(app.exec())
+  <script>
+    function pressButton() {
+      document.getElementById("message").innerText = "🎉 Button Pressed!";
+    }
+  </script>
+</body>
+</html>
