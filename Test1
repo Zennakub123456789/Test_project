@@ -1,0 +1,49 @@
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel
+from PyQt6.QtGui import QFont
+from PyQt6.QtCore import Qt
+import sys
+
+class MyWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("🎨 Cool Button GUI")
+        self.setGeometry(500, 200, 400, 300)  # ขนาดและตำแหน่งหน้าต่าง
+        self.setStyleSheet("background-color: #1e1e2f; color: white; border-radius: 10px;")
+
+        layout = QVBoxLayout()
+
+        # Label
+        self.label = QLabel("Press the button below!")
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label.setFont(QFont("Arial", 16))
+        layout.addWidget(self.label)
+
+        # Button
+        self.button = QPushButton("Click Me!")
+        self.button.setFont(QFont("Arial", 14))
+        self.button.setStyleSheet("""
+            QPushButton {
+                background-color: #ff6f61;
+                color: white;
+                border-radius: 15px;
+                padding: 10px 20px;
+            }
+            QPushButton:hover {
+                background-color: #ff856e;
+            }
+        """)
+        self.button.clicked.connect(self.on_click)
+        layout.addWidget(self.button, alignment=Qt.AlignmentFlag.AlignCenter)
+
+        self.setLayout(layout)
+
+    def on_click(self):
+        self.label.setText("🎉 Button Pressed!")
+
+# Run app
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MyWindow()
+    window.show()
+    sys.exit(app.exec())
